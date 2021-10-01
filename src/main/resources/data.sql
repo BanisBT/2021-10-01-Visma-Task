@@ -13,7 +13,7 @@ CREATE TABLE user_table
 CREATE TABLE book
 (
     id               BIGSERIAL PRIMARY KEY NOT NULL,
-    name             VARCHAR(255)          NOT NULL,
+    tittle           VARCHAR(255)          NOT NULL,
     author           VARCHAR(255)          NOT NULL,
     category         VARCHAR(255),
     language         VARCHAR(255)          NOT NULL,
