@@ -1,6 +1,8 @@
 package com.tbarauskas.vismatask.entity;
 
+import com.tbarauskas.vismatask.dto.BookRequestDTO;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "book")
+@NoArgsConstructor
 public class Book {
 
     @Id
@@ -45,4 +48,14 @@ public class Book {
     @UpdateTimestamp
     @Column(name = "updated")
     private LocalDateTime updated;
+
+    public Book(BookRequestDTO bookDTO) {
+        this.tittle = bookDTO.getTittle();
+        this.author = bookDTO.getAuthor();
+        this.category = bookDTO.getCategory();
+        this.language = bookDTO.getLanguage();
+        this.publicationDate = bookDTO.getPublicationDate();
+        this.isbn = bookDTO.getIsbn();
+        this.guid = bookDTO.getGuid();
+    }
 }
