@@ -19,7 +19,6 @@ CREATE TABLE book
     language         VARCHAR(255)          NOT NULL,
     publication_date TIMESTAMP             NOT NULL,
     isbn             VARCHAR(25)           NOT NULL,
-    guid             TEXT,
     created          timestamp             NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated          timestamp             NOT NULL DEFAULT CURRENT_TIMESTAMP
 )

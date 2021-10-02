@@ -22,8 +22,6 @@ public class BookResponseDTO {
 
     private String isbn;
 
-    private String guid;
-
     public BookResponseDTO(Book book) {
         this.id = book.getId();
         this.tittle = book.getTittle();
@@ -32,6 +30,5 @@ public class BookResponseDTO {
         this.language = book.getLanguage();
         this.publicationDate = book.getPublicationDate();
         this.isbn = book.getIsbn();
-        this.guid = book.getGuid();
     }
 }

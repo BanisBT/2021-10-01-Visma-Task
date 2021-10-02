@@ -2,11 +2,13 @@ package com.tbarauskas.vismatask.service;
 
 import com.tbarauskas.vismatask.entity.Book;
 import com.tbarauskas.vismatask.entity.User;
-import com.tbarauskas.vismatask.exception.BookMaxBorrowingPeriodIsTwoMonth;
+import com.tbarauskas.vismatask.exception.BookMaxBorrowingPeriodIsTwoMonthException;
+import com.tbarauskas.vismatask.exception.BookNotFoundException;
 import com.tbarauskas.vismatask.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class BookService {
@@ -22,7 +24,7 @@ public class BookService {
         this.userService = userService;
     }
 
-    public Book createBook(Book book){
+    public Book createBook(Book book) {
         return bookRepository.save(book);
     }
 
@@ -33,7 +35,15 @@ public class BookService {
 
     public void isLendingPeriodCorrect(LocalDate lendingDateTo) {
         if (lendingDateTo.isAfter(localDatePlus)) {
-            throw new BookMaxBorrowingPeriodIsTwoMonth(localDatePlus);
+            throw new BookMaxBorrowingPeriodIsTwoMonthException(localDatePlus);
         }
+    }
+
+    public Book getBookById(Long id) {
+        return bookRepository.getBookById(id).orElseThrow(() -> new BookNotFoundException(id));
+    }
+
+    public List<Book> getBooksByAuthor(String authorName) {
+        return bookRepository.getAllByAuthor(authorName);
     }
 }

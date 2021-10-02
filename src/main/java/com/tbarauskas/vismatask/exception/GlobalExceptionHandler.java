@@ -11,14 +11,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(BookMaxBorrowingPeriodIsTwoMonth.class)
-    public ResponseEntity<ErrorHandler> exceptionHandler(BookMaxBorrowingPeriodIsTwoMonth e){
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity<ErrorHandler> exceptionHandler(BookNotFoundException e) {
+        log.debug("Book with id - {} was not found", e.getId());
+        return new ResponseEntity<>(new ErrorHandler(HttpStatus.NOT_FOUND.value(),
+                String.format("Book with id %d was not found", e.getId())), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BookMaxBorrowingPeriodIsTwoMonthException.class)
+    public ResponseEntity<ErrorHandler> exceptionHandler(BookMaxBorrowingPeriodIsTwoMonthException e){
         return new ResponseEntity<>(new ErrorHandler(HttpStatus.FORBIDDEN.value(),
                 String.format("Deadline to return book is - %s", e.getMaxBorrowingPeriod())), HttpStatus.FORBIDDEN);
     }
 
-    @ExceptionHandler(UserHasAlreadyThreeBooksBorrowed.class)
-    public ResponseEntity<ErrorHandler> exceptionHandler(UserHasAlreadyThreeBooksBorrowed e){
+    @ExceptionHandler(UserHasAlreadyThreeBooksBorrowedException.class)
+    public ResponseEntity<ErrorHandler> exceptionHandler(UserHasAlreadyThreeBooksBorrowedException e){
         log.debug("User - {} already has three books borrowed", e.getUser());
         return new ResponseEntity<>(new ErrorHandler(HttpStatus.FORBIDDEN.value(),
                 "You already have borrowed three books"), HttpStatus.FORBIDDEN);

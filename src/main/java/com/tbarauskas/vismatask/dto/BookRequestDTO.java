@@ -18,6 +18,4 @@ public class BookRequestDTO {
     private LocalDate publicationDate;
 
     private String isbn;
-
-    private String guid;
 }
