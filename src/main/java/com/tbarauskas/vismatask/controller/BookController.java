@@ -33,7 +33,7 @@ public class BookController {
     public BookResponseDTO createBook(BookRequestDTO bookDTO) {
         Book createBook = bookService.createBook(new Book(bookDTO));
         log.debug("Book - {} has been successfully created", createBook);
-        return new BookResponseDTO(bookService.createBook(createBook));
+        return new BookResponseDTO(createBook);
     }
 
     @PatchMapping("/take")
@@ -48,11 +48,19 @@ public class BookController {
         return modelMapper.map(bookService.getBookById(id), BookResponseDTO.class);
     }
 
-    @GetMapping("/author/{authorName}")
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<BookResponseDTO> getBooksByAuthor(@PathVariable String authorName){
-        return bookService.getBooksByAuthor(authorName).stream()
+    public List<BookResponseDTO> getBooksByAuthor(@RequestParam(value = "authorName") String authorName,
+                                                  @RequestParam(required = false, value = "available") Boolean isNotTaken){
+        return bookService.getBooksByAuthor(authorName, isNotTaken).stream()
                 .map(BookResponseDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBook(@RequestParam(value = "bookId") Long bookId){
+        bookService.deleteBook(bookId);
+        log.debug("Book with id - {} has been successfully deleted", bookId);
     }
 }

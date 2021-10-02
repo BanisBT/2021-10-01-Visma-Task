@@ -43,7 +43,14 @@ public class BookService {
         return bookRepository.getBookById(id).orElseThrow(() -> new BookNotFoundException(id));
     }
 
-    public List<Book> getBooksByAuthor(String authorName) {
-        return bookRepository.getAllByAuthor(authorName);
+    public List<Book> getBooksByAuthor(String authorName, Boolean isNotTaken) {
+        if (isNotTaken == null) {
+            return bookRepository.getAllByAuthor(authorName);
+        }
+        return bookRepository.getAllByAuthorAndIsTaken(authorName, isNotTaken);
+    }
+
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(getBookById(id).getId());
     }
 }

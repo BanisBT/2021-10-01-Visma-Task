@@ -38,6 +38,9 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
+    @Column(name = "is_taken")
+    private Boolean isTaken;
+
     @CreationTimestamp
     @Column(name = "created")
     private LocalDateTime created;
@@ -53,5 +56,6 @@ public class Book {
         this.language = bookDTO.getLanguage();
         this.publicationDate = bookDTO.getPublicationDate();
         this.isbn = bookDTO.getIsbn();
+        this.isTaken = bookDTO.getIsTaken();
     }
 }

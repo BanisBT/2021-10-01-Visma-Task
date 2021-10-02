@@ -18,4 +18,6 @@ public class BookRequestDTO {
     private LocalDate publicationDate;
 
     private String isbn;
+
+    private Boolean isTaken;
 }

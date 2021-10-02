@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     public void setBorrowedBookNumber(User user) {
-        if (user.getBooksTake().equals(3)) {
-            throw new UserHasAlreadyThreeBooksBorrowedException(user);
-        } else {
+        if (user.getBooksTake() < 3) {
             user.setBooksTake(user.getBooksTake() + 1);
+        } else {
+            throw new UserHasAlreadyThreeBooksBorrowedException(user);
         }
     }
 }
