@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
-public class BookMaxBorrowingPeriodIsTwoMonthException extends RuntimeException{
+public class BookMaxBorrowingPeriodIsTwoMonthException extends RuntimeException {
 
     private final LocalDate maxBorrowingPeriod;
 }

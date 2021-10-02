@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UserHasAlreadyThreeBooksBorrowedException extends RuntimeException{
+public class UserHasAlreadyThreeBooksBorrowedException extends RuntimeException {
 
     private User user;
 }

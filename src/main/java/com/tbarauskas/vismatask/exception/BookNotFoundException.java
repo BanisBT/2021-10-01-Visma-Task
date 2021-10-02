@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class BookNotFoundException extends RuntimeException{
+public class BookNotFoundException extends RuntimeException {
 
     private final Long id;
 }

@@ -44,14 +44,14 @@ public class BookController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public BookResponseDTO getBookById(@PathVariable Long id){
+    public BookResponseDTO getBookById(@PathVariable Long id) {
         return modelMapper.map(bookService.getBookById(id), BookResponseDTO.class);
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<BookResponseDTO> getBooksByAuthor(@RequestParam(value = "authorName") String authorName,
-                                                  @RequestParam(required = false, value = "available") Boolean isNotTaken){
+                                                  @RequestParam(required = false, value = "available") Boolean isNotTaken) {
         return bookService.getBooksByAuthor(authorName, isNotTaken).stream()
                 .map(BookResponseDTO::new)
                 .collect(Collectors.toList());
@@ -59,7 +59,7 @@ public class BookController {
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBook(@RequestParam(value = "bookId") Long bookId){
+    public void deleteBook(@RequestParam(value = "bookId") Long bookId) {
         bookService.deleteBook(bookId);
         log.debug("Book with id - {} has been successfully deleted", bookId);
     }

@@ -19,13 +19,13 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BookMaxBorrowingPeriodIsTwoMonthException.class)
-    public ResponseEntity<ErrorHandler> exceptionHandler(BookMaxBorrowingPeriodIsTwoMonthException e){
+    public ResponseEntity<ErrorHandler> exceptionHandler(BookMaxBorrowingPeriodIsTwoMonthException e) {
         return new ResponseEntity<>(new ErrorHandler(HttpStatus.FORBIDDEN.value(),
                 String.format("Deadline to return book is - %s", e.getMaxBorrowingPeriod())), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(UserHasAlreadyThreeBooksBorrowedException.class)
-    public ResponseEntity<ErrorHandler> exceptionHandler(UserHasAlreadyThreeBooksBorrowedException e){
+    public ResponseEntity<ErrorHandler> exceptionHandler(UserHasAlreadyThreeBooksBorrowedException e) {
         log.debug("User - {} already has three books borrowed", e.getUser());
         return new ResponseEntity<>(new ErrorHandler(HttpStatus.FORBIDDEN.value(),
                 "You already have borrowed three books"), HttpStatus.FORBIDDEN);
