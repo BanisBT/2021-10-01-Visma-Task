@@ -1,10 +1,10 @@
 package com.tbarauskas.vismatask.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tbarauskas.vismatask.dto.BookRequestDTO;
 import com.tbarauskas.vismatask.dto.BookResponseDTO;
 import com.tbarauskas.vismatask.entity.Book;
-import com.tbarauskas.vismatask.entity.User;
 import com.tbarauskas.vismatask.model.ErrorHandler;
 import com.tbarauskas.vismatask.repository.BookRepository;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -27,8 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookControllerTest {
-
-    private final LocalDateTime now = LocalDateTime.now();
 
     @Autowired
     private MockMvc mockMvc;
@@ -60,9 +58,6 @@ class BookControllerTest {
 
     @Test
     void testTakeBook() {
-        User user = new User(1L, "Tomas", 2, now, now);
-        LocalDate date = now.plusMonths(1).toLocalDate();
-
     }
 
     @Test
@@ -90,7 +85,30 @@ class BookControllerTest {
     }
 
     @Test
-    void getBooksByAuthor() {
+    void testGetAllBooksByAuthor() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/books/")
+                .param("authorName", "George Orwell"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        List<BookResponseDTO> bookList = objectMapper.readValue(mvcResult.getResponse().getContentAsString(),
+                new TypeReference<>() {});
+
+        assertEquals(2, bookList.size());
+    }
+
+    @Test
+    void testGetBooksByAuthorIfAvailable() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/books/")
+                .param("authorName", "George Orwell")
+                .param("available", "false"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        List<BookResponseDTO> bookList = objectMapper.readValue(mvcResult.getResponse().getContentAsString(),
+                new TypeReference<>() {});
+
+        assertEquals(1, bookList.size());
     }
 
     @Test
