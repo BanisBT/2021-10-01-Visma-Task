@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "968b5a3d-1f35-4ad1-b3ee-1c0c329232bf",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "VismaTask",
+			"item": [
+				{
+					"name": "GetAllBooksByAuthor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/books?authorName=George Orwell",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "authorName",
+									"value": "George Orwell"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAvailableBooksByAuthor Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/books?authorName=George Orwell&available=false",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "authorName",
+									"value": "George Orwell"
+								},
+								{
+									"key": "available",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBook Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tittle\": \"Biblija\",\n    \"author\": \"Moze\",\n    \"category\": \"religija\",\n    \"language\": \"zydu\",\n    \"publicationDate\": \"1000-01-01\",\n    \"isbn\": \"IMS-00-2345-0001\",\n    \"isTaken\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/books?bookId=7",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "bookId",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tittle\": \"Biblija\",\n    \"author\": \"Moze\",\n    \"category\": \"religija\",\n    \"language\": \"zydu\",\n    \"publicationDate\": \"1000-01-01\",\n    \"isbn\": \"IMS-00-2345-0001\",\n    \"isTaken\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/books/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/books/7",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
