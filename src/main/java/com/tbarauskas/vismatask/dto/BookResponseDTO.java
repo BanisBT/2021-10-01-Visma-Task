@@ -2,10 +2,12 @@ package com.tbarauskas.vismatask.dto;
 
 import com.tbarauskas.vismatask.entity.Book;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 public class BookResponseDTO {
 
     private Long id;

@@ -7,17 +7,17 @@ import java.time.LocalDate;
 @Data
 public class BookRequestDTO {
 
-    private String tittle;
+    private final String tittle;
 
-    private String author;
+    private final String author;
 
-    private String category;
+    private final String category;
 
-    private String language;
+    private final String language;
 
-    private LocalDate publicationDate;
+    private final LocalDate publicationDate;
 
-    private String isbn;
+    private final String isbn;
 
-    private Boolean isTaken;
+    private final Boolean isTaken;
 }

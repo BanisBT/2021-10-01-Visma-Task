@@ -25,6 +25,6 @@ CREATE TABLE book
 );
 
 INSERT INTO book (id, tittle, author, category, language, publication_date, isbn, is_taken)
-VALUES (1, 'Givuliu ukis', 'George Orwell', 'politika','lietuviu', '1974-01-01', 'IMS-13-2345-4642', false),
+VALUES (1, 'Gyvuliu ukis', 'George Orwell', 'politika','lietuviu', '1974-01-01', 'IMS-13-2345-4642', false),
        (2, '1984', 'George Orwell', 'fantastika','lietuviu', '1976-01-01', 'IMS-14-2345-4642', true),
        (3, 'Kabinetas 339', 'Dovydas ir Birute', 'politika','lietuviu', '2020-01-01', 'IMS-16-2345-4642', true);

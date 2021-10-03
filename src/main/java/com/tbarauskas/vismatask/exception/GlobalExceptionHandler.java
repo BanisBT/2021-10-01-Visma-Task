@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorHandler> exceptionHandler(BookNotFoundException e) {
         log.debug("Book with id - {} was not found", e.getId());
         return new ResponseEntity<>(new ErrorHandler(HttpStatus.NOT_FOUND.value(),
-                String.format("Book with id %d was not found", e.getId())), HttpStatus.NOT_FOUND);
+                String.format("Book with id - %d was not found", e.getId())), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(BookMaxBorrowingPeriodIsTwoMonthException.class)

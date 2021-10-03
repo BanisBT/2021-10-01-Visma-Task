@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
 class BookServiceTest {
 
-    private final LocalDate now = LocalDate.now();
+    private final LocalDate today = LocalDate.now();
 
     @Mock
     private Book book;
@@ -46,7 +46,7 @@ class BookServiceTest {
     void testTakeBookThenLendingPeriodCorrect() {
         User user = new User();
 
-        bookService.takeBook(user, now.plusMonths(1));
+        bookService.takeBook(user, today.plusMonths(1));
 
         verify(userService, times(1)).setBorrowedBookNumber(user);
     }
@@ -54,7 +54,7 @@ class BookServiceTest {
     @Test
     void testThenLendingPeriodIsNotCorrect() {
         assertThrows(BookMaxBorrowingPeriodIsTwoMonthException.class,
-                () -> bookService.isLendingPeriodCorrect(now.plusMonths(3)));
+                () -> bookService.isLendingPeriodCorrect(today.plusMonths(3)));
     }
 
     @Test
